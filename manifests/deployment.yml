@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkus-client
+  labels:
+    app: quarkus-client
+spec:
+  selector:
+    matchLabels:
+      app: quarkus-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: quarkus-client
+    spec:
+      #imagePullSecrets:
+      #- name: registry-secret
+      containers:
+        - name: quarkus-client
+          image: quarkus-client:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9009
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: native
+            - name: VERSION
+              value: 'K8S_TIMESTAMP'
+      nodeSelector:
+        beta.kubernetes.io/os: linux

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quarkus-client
+  labels:
+    app: quarkus-client
+spec:
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+    - port: 9009
+      targetPort: 9009
+      nodePort: 31770
+  selector:
+    app: quarkus-client
