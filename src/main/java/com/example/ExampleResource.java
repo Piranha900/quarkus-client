@@ -1,14 +1,20 @@
 package com.example;
 
+import io.quarkus.scheduler.Scheduled;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
+
 @Path("api")
 public class ExampleResource {
 
+    private final Logger log = LoggerFactory.getLogger(ExampleResource.class);
     @Inject
     @RestClient
     ClientResource clientResource;
@@ -25,7 +31,9 @@ public class ExampleResource {
     }
     @GET
     @Path("/hi")
-    public String hi() {
-        return clientResource.getHi();
+    @Scheduled(every="10s")
+    public void hi() {
+        log.info("access to /hi");
+        /*return */clientResource.getHi();
     }
 }

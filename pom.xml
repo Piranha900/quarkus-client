@@ -41,11 +41,25 @@
             <artifactId>smallrye-mutiny-vertx-web-client</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-config-yaml</artifactId>
+        </dependency>
+
+
+
+        <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-logging-json -->
+
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest-client</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-scheduler</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.quarkus</groupId>

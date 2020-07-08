@@ -11,7 +11,8 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-@RegisterRestClient(baseUri = "http://quarkus-app:9900")
+/*@RegisterRestClient(baseUri = "http://quarkus-app:9900")*/
+@RegisterRestClient(baseUri = "http://localhost:9900")
 @Path("/apidue")
 public interface ClientResource {
 
@@ -51,11 +52,11 @@ public interface ClientResource {
 
     @GET
     @Path("/hi")
-    default String getHi(){
+    default void getHi(){
 
         WebClient client = WebClient.create(vertx);
 
-        return client.get("/hi").send().onItem().apply(resp -> {
+        client.get("/hi").send().onItem().apply(resp -> {
             return resp.statusCode()== HttpStatus.SC_OK?
                     resp.bodyAsJsonObject() :
                     new JsonObject()
